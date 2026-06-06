@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Witty Weather</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div id="background-layer" class="bg-default"></div>
+    <div class="container">
+        <header>
+            <div class="header-top">
+                <h1>Witty Weather</h1>
+                <button id="lang-toggle" class="lang-toggle">EN / MZ</button>
+            </div>
+            <p class="subtitle">Philosophical forecasts to ponder</p>
+        </header>
+
+        <main>
+            <div class="search-container">
+                <input type="text" id="city-input" placeholder="Enter city name..." autocomplete="off">
+                <button id="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+
+            <div class="error-message" id="error-message"></div>
+
+            <div class="weather-card hidden" id="weather-card">
+                <div class="card-header">
+                    <h2 id="city-name">--</h2>
+                    <p id="weather-description">--</p>
+                </div>
+                
+                <div class="weather-main">
+                    <div class="weather-icon" id="weather-icon">
+                        <i class="fa-solid fa-cloud"></i>
+                    </div>
+                    <div class="temperature">
+                        <span id="temp-value">--</span><span class="unit">°C</span>
+                    </div>
+                </div>
+
+                <div class="weather-details">
+                    <div class="detail">
+                        <i class="fa-solid fa-wind"></i>
+                        <span id="wind-speed">-- km/h</span>
+                    </div>
+                    <div class="detail">
+                        <i class="fa-solid fa-droplet"></i>
+                        <span id="humidity">--%</span>
+                    </div>
+                </div>
+
+                <div class="witty-comment-container">
+                    <p id="witty-comment">"Fetching the weather so you don't have to look out the window."</p>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>Powered by Open-Meteo & Sarcasm</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
