@@ -1,11 +1,11 @@
-const CACHE_NAME = 'witty-weather-v2';
+const CACHE_NAME = 'witty-weather-v3';
 const STATIC_ASSETS = [
-  '/',
-  '/index.html',
-  '/style.css',
-  '/quotes.js',
-  '/app.js',
-  '/icon.png'
+  './',
+  './index.html',
+  './style.css',
+  './quotes.js',
+  './app.js',
+  './icon.png'
 ];
 
 const API_CACHE_NAME = 'witty-weather-api-v1';
