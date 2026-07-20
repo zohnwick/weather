@@ -2,86 +2,86 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Witty Weather</title>
     <meta name="description" content="A beautifully snarky weather app with literary quotes, philosophical forecasts, and dynamic animations.">
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#F5F5F7">
+    <meta name="theme-color" content="#000000">
     <link rel="apple-touch-icon" href="icon.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+    
+    <!-- Using system fonts for Apple feel -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <!-- Full screen background gradient -->
     <div id="background-layer" class="bg-default"></div>
+    
+    <!-- Full screen particle overlay (placed behind UI, over background) -->
+    <div class="weather-particles" id="weather-particles"></div>
+
     <div class="container">
-        <header>
+        <!-- Minimal header/search -->
+        <header class="glass-header">
             <div class="header-top">
-                <div class="brand">
-                    <i class="fa-solid fa-cloud-sun brand-icon"></i>
-                    <h1>Witty Weather</h1>
-                </div>
                 <button id="lang-toggle" class="lang-toggle" aria-label="Switch comment language mode">EN</button>
             </div>
-        </header>
-
-        <main>
             <div class="search-container">
                 <button id="geo-btn" class="geo-btn" aria-label="Detect my location">
-                    <i class="fa-solid fa-location-crosshairs"></i>
+                    <i class="fa-solid fa-location-arrow"></i>
                 </button>
-                <input type="text" id="city-input" placeholder="Search city..." autocomplete="off" aria-label="City name">
+                <input type="text" id="city-input" placeholder="Search for a city" autocomplete="off" aria-label="City name">
                 <button id="search-btn" aria-label="Search weather">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
             </div>
+        </header>
 
-            <div class="error-message" id="error-message" role="alert"></div>
+        <div class="error-message" id="error-message" role="alert"></div>
 
-            <div class="weather-card hidden" id="weather-card">
-                <div class="weather-particles" id="weather-particles"></div>
-
-                <div class="card-top-section">
-                    <p class="city-label" id="city-name">--</p>
-                    <p class="condition-label" id="weather-description">--</p>
+        <main class="weather-main hidden" id="weather-card">
+            <!-- Hero section (City, Temp, Condition) -->
+            <div class="hero-section">
+                <h1 class="city-name" id="city-name">--</h1>
+                <div class="temp-wrapper">
+                    <span class="temp-value" id="temp-value">--</span>
+                    <span class="temp-unit" id="unit-label">°C</span>
+                    <button id="unit-toggle" class="unit-toggle" aria-label="Toggle temperature unit">
+                        <i class="fa-solid fa-repeat"></i>
+                    </button>
                 </div>
+                <p class="condition" id="weather-description">--</p>
+                <div class="weather-icon-inline" id="weather-icon"></div>
+            </div>
 
-                <div class="weather-hero">
-                    <div class="weather-icon-large" id="weather-icon">
-                        <i class="fa-solid fa-cloud"></i>
-                    </div>
-                    <div class="temp-block">
-                        <span class="temp-number" id="temp-value">--</span>
-                        <span class="temp-unit" id="unit-label">°C</span>
-                        <button id="unit-toggle" class="unit-toggle" aria-label="Toggle temperature unit">
-                            <i class="fa-solid fa-repeat"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="detail-chips">
-                    <div class="chip">
-                        <i class="fa-solid fa-wind chip-icon"></i>
-                        <span class="chip-label">Wind</span>
-                        <span class="chip-value" id="wind-speed">--</span>
-                    </div>
-                    <div class="chip">
-                        <i class="fa-solid fa-droplet chip-icon"></i>
-                        <span class="chip-label">Humidity</span>
-                        <span class="chip-value" id="humidity">--</span>
+            <!-- Details Glass Panel -->
+            <div class="glass-panel details-panel">
+                <div class="detail-item">
+                    <i class="fa-solid fa-wind detail-icon"></i>
+                    <div class="detail-text">
+                        <span class="detail-label">WIND</span>
+                        <span class="detail-value" id="wind-speed">--</span>
                     </div>
                 </div>
-
-                <div class="quote-section">
-                    <span class="quote-mark">"</span>
-                    <p id="witty-comment" class="quote-text">Fetching the weather so you don't have to look out the window.</p>
-                    <span class="quote-mark">"</span>
+                <div class="detail-item">
+                    <i class="fa-solid fa-droplet detail-icon"></i>
+                    <div class="detail-text">
+                        <span class="detail-label">HUMIDITY</span>
+                        <span class="detail-value" id="humidity">--</span>
+                    </div>
                 </div>
-                <button id="cycle-quote-btn" class="cycle-quote-btn" aria-label="Next quote">
-                    <i class="fa-solid fa-shuffle"></i>
-                </button>
+            </div>
+
+            <!-- Quote Glass Panel -->
+            <div class="glass-panel quote-panel">
+                <div class="quote-header">
+                    <i class="fa-solid fa-quote-left quote-icon"></i>
+                    <span class="quote-title">Forecast Insight</span>
+                    <button id="cycle-quote-btn" class="cycle-quote-btn" aria-label="Next quote">
+                        <i class="fa-solid fa-rotate-right"></i>
+                    </button>
+                </div>
+                <p id="witty-comment" class="quote-text">Fetching the weather so you don't have to look out the window.</p>
             </div>
         </main>
         
@@ -95,7 +95,7 @@
     <script>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js').then(registration => {
+          navigator.serviceWorker.register('./sw.js').then(registration => {
             console.log('ServiceWorker registration successful with scope: ', registration.scope);
           }, err => {
             console.log('ServiceWorker registration failed: ', err);

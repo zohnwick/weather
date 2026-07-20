@@ -429,10 +429,8 @@ function updateUI(city, current) {
     // Background
     dom.bgLayer.className = weatherInfo.bgClass;
 
-    // Card classes: base + palette
-    dom.weatherCard.className = 'weather-card';
+    dom.weatherCard.className = 'weather-main';
     const baseClass = weatherInfo.bgClass.replace('bg-', '');
-    dom.weatherCard.classList.add(`palette-${baseClass}`);
 
     // Generate weather particles
     createParticles(baseClass, current.is_day);
